@@ -1,45 +1,50 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
-#define STACK_SIZE 100
+#define STACK_SIZE 10
 
 int contents[STACK_SIZE];
 int top = 0;
 
+void stack_overflow()
+{
+	printf("Stack overflow. Terminating.\n");
+	exit(EXIT_FAILURE);
+}
+void stack_underflow()
+{
+	printf("Stack underflow. Terminating.\n");
+	exit(EXIT_FAILURE);
+}
 void make_empty(void)
 {
 	top = 0;
 }
-
 bool is_empty(void)
 {
 	return top == 0;
 }
-
 bool is_full(void)
 {
 	return top == STACK_SIZE;
 }
-
 void push(int num)
 {
 	if(is_full()){
-//		stack_overflow();
+		stack_overflow();
 	}else{
-		top++;
-		contents[top] = num;
+		contents[top++] = num;
 	}
 }
-
 int pop(void)
 {
 	if(is_empty()){
-//		stack_underflow();
+		stack_underflow();
 	}else{
-		return contents[top--];
+		return contents[--top];
 	}
 }
-
 void print_stack(void)
 {
 	int stack_size = top;
@@ -51,21 +56,33 @@ void print_stack(void)
 
 int main(void)
 {
-	push(1);
-	push(2);
-	push(13);
-	push(25);
+	int ch;
+	bool proper_braces = true;
 
-	print_stack();
+	while ((ch = getchar()) != '\n'){
+		if (ch == '(' || ch == '{'){
+			push(ch);
+		}else if (ch == ')'){
+			if(pop() == '('){
+				continue;
+			}else{
+				proper_braces = false;
+				break;
+			}
+		}else if (ch == '}'){
+			if(pop() == '{'){
+				continue;
+			}else{
+				proper_braces = false;
+				break;
+			}
+		}
+	}
 
-	pop();
+	if(!is_empty())
+		proper_braces = false;
 
-	printf("\n");
-	print_stack();
-
-	make_empty();
-	printf("\n");
-	print_stack();
+	proper_braces ? printf("Proper braces\n") : printf("Braces are NOT proper!\n");
 
 	return 0;
 }

@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+// Chapter 8. Exercise 6
 
 int main(){
 

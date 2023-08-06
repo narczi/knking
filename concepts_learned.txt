@@ -1,0 +1,3 @@
+Linear Search -> Find Max, Finx Min
+Stack
+Decompose number into integral and fractional parts
