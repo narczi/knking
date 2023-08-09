@@ -1,3 +1,5 @@
+// Chapter 11. Exercise 5.
+
 #include <stdio.h>
 #include <time.h>
 

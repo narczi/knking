@@ -1,3 +1,5 @@
+// Chapter 11. Exercise 8.
+
 #include <stdio.h>
 #define N 10
 #define NELEMS(x) (sizeof(x) / sizeof(x[0]))

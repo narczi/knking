@@ -1,3 +1,5 @@
+// Chapter 11. Exercise 7.
+
 #include <stdio.h>
 
 #define MONTHS 12

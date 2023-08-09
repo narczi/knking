@@ -1,4 +1,5 @@
-// 11. Pointers, Ex 4.
+// Chapter 11. - Pointers, Exercise 4.
+
 #include <stdio.h>
 
 void swap(int *p, int *q)

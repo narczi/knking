@@ -1,3 +1,5 @@
+// Chapter 11. Exercise 6.
+
 #include <stdio.h>
 
 #define N 10
