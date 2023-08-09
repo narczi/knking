@@ -1,3 +1,4 @@
+// Chapter 2. - C fundamentals, Programming Project 4.
 #include <stdio.h>
 
 #define HUNDRED_DOLLARS 100
