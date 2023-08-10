@@ -1,27 +1,37 @@
+// First seen:  Chapter 6.  - Loops, 	Programming Project 3.
+// Modified in: Chapter 11. - Pointers, Programming Project 3.
 #include <stdio.h>
 
-int main(){
+void reduce(int numerator, int denominator, int *reduced_numerator, int *reduced_denominator)
+{
+	int init_num = numerator;
+	int init_den = denominator;
 
-	
-	int m, n;
-	int gcd;
-	int rem;
+	int gcd, rem;
+	while(denominator != 0){
+		rem = numerator % denominator;
+		numerator = denominator;
+		denominator = rem;
 
-	printf("Enter a fraction: ");
-	scanf("%d / %d", &m , &n);
-
-	int init_m = m;
-	int init_n = n;
-
-	while(n != 0){
-		rem = m % n;
-		m = n;
-		n = rem;
-
-		gcd = m;
+		gcd = numerator;
 	}
 
-	printf("In lowest terms: %d/%d\n", init_m / gcd, init_n / gcd);
+	*reduced_numerator = init_num / gcd;
+	*reduced_denominator = init_den / gcd;
+}
+
+int main(void)
+{
+	int numerator, denominator;
+	int reduced_numerator, reduced_denominator;
+
+	printf("Enter a fraction: ");
+	scanf("%d / %d", &numerator , &denominator);
+
+	reduce(numerator, denominator, &reduced_numerator, &reduced_denominator);
+
+
+	printf("In lowest terms: %d/%d\n", reduced_numerator, reduced_denominator);
 
 
 	return 0;
