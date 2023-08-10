@@ -1,28 +1,40 @@
-// Chapter 2. - C fundamentals, Programming Project 4.
+// First seen:  Chapter 2.  - C fundamentals, Programming Project 4.
+// Modified in: Chapter 11. - Pointers, 	  Programming Project 1.
 #include <stdio.h>
 
-#define HUNDRED_DOLLARS 100
-#define TWENTY_DOLLARS 20
-#define TEN_DOLLARS 10
-#define FIVE_DOLLARS 5
-#define ONE_DOLLAR 1
+#define HUNDRED 0
+#define TWENTY  1
+#define TEN 	2
+#define FIVE 	3
+#define ONE		4
 
-int main(){
-	int dollar_bill[5] = {100, 20, 10, 5, 1};
-	int dollars_amount = 93;
-//	printf("Input dollars amount: ");
-//	scanf("%d", &dollars_amount);
+int dollar_bill[5] = {100, 20, 10, 5, 1};
+int banknote[5] = {0};
 
-	int quotient = 1;
+void pay_amount(int dollars, int *hundreds, int *twenties, int *tens, int *fives, int *ones)
+{
+	int quotient = 1; // "quotient" znaczy iloraz czyli wynik dzielenia
 
 	for(int i=0; i<5; i++){
-		quotient = dollars_amount / dollar_bill[i];
-		dollars_amount = dollars_amount - quotient * dollar_bill[i];
-		printf("%d = %d\n", dollar_bill[i], quotient);	
+		quotient = dollars / dollar_bill[i];
+		dollars -= quotient * dollar_bill[i];
+		banknote[i] = quotient;
+	}	
+}
+
+int main(void)
+{
+	int dollars;
+
+	printf("Enter a dollar amount: ");
+	scanf("%d", &dollars);
+
+	pay_amount(dollars, &banknote[HUNDRED], &banknote[TWENTY], &banknote[TEN],
+						&banknote[FIVE], &banknote[ONE]);
+
+	for(int i = 0; i < 5; i++){
+		printf("$%-3d bills : %d\n", dollar_bill[i], banknote[i]);
 	}
-
-
-
-
+	
 	return 0;
 }
